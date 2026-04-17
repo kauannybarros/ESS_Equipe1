@@ -1,0 +1,23 @@
+Scenario: Cadastro de usuário discente realizado com sucesso
+Given eu estou na página “Cadastro de Usuário”
+And o CPF "12345678900" não está cadastrado no sistema
+When eu preencho “Nome” com “Kauanny Barros”
+And eu preencho “CPF” com “12345678900”
+And eu seleciono “Discente” como tipo de vínculo
+And eu preencho “Curso” com "Engenharia da Computação”
+And eu preencho “Matrícula” com “2023001234”
+And eu preencho “Senha” com “senha123”
+And eu clico no botão “Confirmar”
+Then eu vejo uma mensagem “Usuário cadastrado com sucesso!”
+And o usuário "Kauanny Barros" é cadastrado como discente no sistema
+
+Scenario: Alteração de nome do usuário com sucesso
+Given eu estou na página “Dados do Usuário”
+And eu estou autenticado como o usuário “Kauanny Barros”
+When eu clico no botão "Editar"
+And eu altero o campo “Nome” para “Kauanny K. Barros”
+And eu preencho o campo “Senha” com “senha123”
+And eu clico no botão “Salvar alterações”
+Then eu vejo uma mensagem “Dados atualizados com sucesso!”
+And eu vejo o nome atualizado como “Kauanny K. Barros”
+And o nome do usuário é atualizado para “Kauanny K. Barros” no sistema
